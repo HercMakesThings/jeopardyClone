@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Q/A</title>
+</head>
+<body>
+
+    <h1>Upload your Jeopardy Questions and Answers in csv form here!</h1>
+
+    <p>username: <span id="user-name"></span></p>
+
+    <form action="/upload/csv" method="post" id="uploads-form" enctype="multipart/form-data">
+        <label for="questions">Questions File: </label>
+        <input type="file" name="questions" id="questions" accept="*.csv">
+
+        <label for="answers">Answers File: </label>
+        <input type="file" name="answers" id="answers" accept="*.csv">
+
+        <input type="submit" value="submit csv">
+    </form>
+
+    <a href="http://localhost:3001/jeopardy.html">Use Current Questions/Answers</a>
+
+    <script src="js/upload.js"></script>
+</body>
+</html>

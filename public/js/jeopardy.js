@@ -23,7 +23,7 @@ let answerArr = [];
 
 
 async function getQuestions(){
-  const data = await fetch('questions.csv');
+  const data = await fetch('csv/questions.csv');
   const questions = await data.text();
   const rows = questions.split(/\n/).slice(1);
   rows.forEach(elt =>{
@@ -35,7 +35,7 @@ async function getQuestions(){
 }
 
 async function getAnswers(){
-  const data = await fetch('answers.csv');
+  const data = await fetch('csv/answers.csv');
   const answers = await data.text();
   const rows = answers.split(/\n/).slice(1);
   rows.forEach(elt =>{
