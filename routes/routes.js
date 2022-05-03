@@ -12,8 +12,6 @@ const mongoose = require('mongoose');
 const User = require('../models/users');
 const path = require('path');
 const jwt = require('jsonwebtoken');
-// const { json } = require('body-parser');
-// const JWT_SECRET = process.env.JWT_SECRET || 'aalskdujghfasdfbao76a68T3GH39087987(&^&%^LASJDF%$';
 const JWT_SECRET = process.env.JWT_SECRET;
 const fs = require('fs').promises;
 
