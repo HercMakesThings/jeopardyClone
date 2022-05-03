@@ -26,12 +26,19 @@ mongoose.connect(dbURI)
 
 
 app.use(adminRoutes);
-app.use('/', express.static(path.join(__dirname, 'public')));
+// app.use('/', express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
 app.use(bodyParser.json());
 // app.use('/upload/csv', bodyParser.text({type:"*/*"}));
+app.use('/jeopardy', express.static(path.join(__dirname, '/public/jeopardy.html')));
+app.use('/new', express.static(path.join(__dirname, '/public/new.html')));
 
 
-
+// app.post('/jeopardy', (req, res)=>{
+//     // res.sendFile(__dirname + '/public/jeopardy.html');
+//     // console.log('heya!');
+//     res.sendFile(path.join(__dirname, '/public/jeopardy.html'));
+// });
 
 // app.post('/login', async (req, res)=>{
 //     const { username, password } = req.body;

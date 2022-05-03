@@ -3,10 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/output.css">
     <link rel="stylesheet" href="css/style.css">
+    <!-- <script type="text/javascript" src="js/jeopardy.js"></script> -->
     <title>Jeopardy!</title>
   </head>
-  <body>
+  <body class="bg-firstBlue text-white">
 
     <div id="modal">
       <div id="popup">
@@ -16,33 +18,39 @@
 
     <div id="modalA">
       <div id="popupA">
-        Popup 2!
+        <p id="popupA-text">Popup 2!</p>
+        <!-- <span class="text-green-500 bg-white" id="a-correct">X</span>
+        <span id="a-incorrect">O</span> -->
+        <button class="text-green-500 p-2 bg-white rounded-md" id="a-correct">Correct!</button>
+        <button class="text-red-500 p-2 bg-white rounded-md" id="a-incorrect">Incorrect!</button>
       </div>
     </div>
 
-    <label class="switch">
-      <input type="checkbox" id="checker">
-      <span class="slider round"></span>
-    </label>
-  
-    <div id="scores">
-      <div>
-        <!-- <label for="team-1"></label>
-        <input type="number" id="score1-input">
-        <button id="btn-1">Team 1</button> -->
-        <p>Team 1 Score: <span id="t1-score"></span></p>
-      </div>
-      <div>
-        <!-- <label for="team-1"></label>
-        <input type="number" id="score2-input">
-        <button id="btn-2">Team 2</button> -->
-        <p>Team 2 Score: <span id="t2-score"></span></p>
-      </div>
+    <div class="flex mt-0.5">
+      <label class="switch">
+        <input type="checkbox" id="checker">
+        <span class="slider round"></span>
+      </label>
+      <p class="mr-2 ml-2 leading-loose text-lg font-bold">Team 1 Score: <span id="t1-score">000</span></p>
+      <p class="mr-2 leading-loose text-lg font-bold">Team 2 Score: <span id="t2-score">000</span></p>
+      <!-- <a href="/" class="bg-firstPurp text-white p-2 ml-auto hover:cursor-pointer hover:bg-firstOrchid">Login</a> -->
+      <button id="reset-btn" class="bg-firstPurp text-white p-2 ml-auto hover:cursor-pointer hover:bg-firstOrchid">Reset Board</button>
+      <a href="/new" class="bg-firstPurp text-white p-2 ml-0.5 hover:cursor-pointer hover:bg-firstOrchid">Upload</a>
+      <button id="logout" class="bg-firstPurp text-white p-2 ml-0.5 mr-0.5 hover:cursor-pointer hover:bg-firstOrchid">Logout</button>
     </div>
+  
+    <!-- <div id="scores" class="flex">
+      <div class="mr-2">
+        <p>Team 1 Score: <span id="t1-score">000</span></p>
+      </div>
+      <div class="mr-2">
+        <p>Team 2 Score: <span id="t2-score">000</span></p>
+      </div>
+    </div> -->
 
     <!-- <section id="btn-grid"></section> -->
 
-    <table id="btn-table">
+    <table id="btn-table" class="border-separate">
       <tr>
         <th>The Internet</th>
         <th>UI/UX</th>
@@ -115,6 +123,7 @@
       </tr>
   </table>
 
+    <script type="text/javascript" src="js/appsw.js"></script>
     <script type="text/javascript" src="js/jeopardy.js"></script>
   </body>
 </html>

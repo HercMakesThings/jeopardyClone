@@ -4,21 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/output.css">
+    <!-- <script type="text/javascript" src="js/login.js"></script> -->
     <title>Upload Q/A</title>
 </head>
-<body>
+<body class="bg-firstPurp text-white">
+    <div class="mx-auto mt-16 w-1/2 bg-white text-black px-24 py-24 rounded-lg">
+        <h1 class="text-center text-2xl font-bold mb-8">Login</h1>
 
-    <h1>Upload your Jeopardy Questions and Answers in csv form here!</h1>
+        <form action="" method="POST" id="login-form">
+            <label for="username">Username: </label>
+            <input type="text" name="username" id="username" class="border-2"><br>
 
-    <form action="" method="POST" id="login-form">
-        <label for="username">Username: </label>
-        <input type="text" name="username" id="username"><br>
+            <label for="password">Password:  </label>
+            <input type="password" name="password" id="password" class="border-2">
+            <input type="submit" class="bg-firstPurp text-white p-2 ml-2 mt-2 rounded-lg hover:cursor-pointer hover:bg-firstBlue">
+        </form>
+    </div>
+    
 
-        <label for="password">Password: </label>
-        <input type="text" name="password" id="password">
-        <input type="submit">
-    </form>
-
-    <script src="js/login.js"></script>
+    <script type="text/javascript" src="js/appsw.js"></script>
+    <script type="text/javascript" src="js/login.js"></script>
 </body>
 </html>

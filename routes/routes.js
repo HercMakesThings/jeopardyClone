@@ -14,8 +14,13 @@ const fs = require('fs').promises;
 
 
 
+
 router.use(bodyParser.json());
 router.use('/upload/csv', bodyParser.text({type:'.csv'}));
+
+// router.get('/jeopardy', (req, res)=>{
+//     res.sendFile(path.join(__dirname, '/public/jeopardy.html'));
+// });
 
 //login route handler
 router.post('/login', async (req, res)=>{
@@ -37,6 +42,21 @@ router.post('/login', async (req, res)=>{
     return json({status: 'error', error: 'Invalid username/password!'});
 });
 
+router.post('/login/check', async (req, res)=>{
+    const {token} = req.body;
+
+    try{
+        const user_token = jwt.verify(token, JWT_SECRET);
+        // console.log(user_token);
+        const _id = user_token.id;
+        const user = await User.findOne({_id});
+        const {username} = user;
+        return res.json({status: 'logged in!', data: {username}});
+    }catch{
+        res.json({status: 'not logged in!'});
+    }
+});
+
 router.post('/upload', async (req, res)=>{
     const {token} = req.body;
 
@@ -48,62 +68,93 @@ router.post('/upload', async (req, res)=>{
         const {username} = user;
         return res.json({status: 'ok', data: {username}});
     }catch{
-        res.json({status: 'error', error: 'Could not verify signature!'});
+        res.json({status: 'error', error: 'Could not verify signature!', redirectURL: 'http://localhost:3001'});
     }
 });
 
 const csvUpload = upload.fields([{name: 'questions', maxCount: 1}, {name: 'answers', maxCount: 1}]);
-router.post('/upload/csv', csvUpload, async (req, res)=>{
-    // let { questions, answers } = req.body;
-    // let {quesFormData, ansFormData} = req.file;
-
-    // console.log(req.file);
-    // const quesCSV = req.file.buffer.toString('utf8');
-    // console.log(quesCSV);
-    // const quesCSV = req.file.buffer.toString('utf8');
-    // console.log(quesCSV);
+router.post('/upload/csv/:user', csvUpload, async (req, res)=>{
 
     const quesCSV = req.files['questions'][0].buffer.toString('utf8');
     const ansCSV = req.files['answers'][0].buffer.toString('utf8');
-    console.log(ansCSV);
+    // console.log(ansCSV);
+    const teacher = req.params.user;
+    console.log(teacher);
 
-    // await fs.writeFile('./public/csv/questions1.csv', quesCSV, (err)=>{
+    try{
+        //delete and replace questions.csv with input from new.html
+        await fs.unlink(`./public/csv/${teacher}/questions.csv`, (err)=>{
+            if(err){
+                throw err;
+            }
+        }).then(()=>{
+            fs.writeFile(`./public/csv/${teacher}/questions.csv`, quesCSV, (err)=>{
+                if(err){
+                    throw err;
+                }
+                // return console.log('questions.csv updated!');
+            });
+        });
+        
+        //delete and replace answers.csv with input from new.html
+        await fs.unlink(`./public/csv/${teacher}/answers.csv`, (err)=>{
+            if(err){
+                throw err;
+            }
+        }).then(()=>{
+            fs.writeFile(`./public/csv/${teacher}/answers.csv`, ansCSV, (err)=>{
+                if(err){
+                    throw err;
+                }
+                // return console.log('answers.csv updated!');
+            });
+        }).then(()=>res.json({status: 'ok'}));
+    }
+    catch(err){
+        return res.json({status: 'error', error: 'Could not update questions/answers!'});
+    }
+
+
+
+
+
+
+
+    // try{
+    //     //delete and replace questions.csv with input from new.html
+    //     await fs.unlink('./public/csv/questions.csv', (err)=>{
+    //         if(err){
+    //             throw err;
+    //         }
+    //     }).then(()=>{
+    //         fs.writeFile('./public/csv/questions.csv', quesCSV, (err)=>{
     //             if(err){
     //                 throw err;
     //             }
+    //             // return console.log('questions.csv updated!');
     //         });
-
-
-    // try{
-    // await fs.unlink('./public/csv/questions.csv', (err)=>{
-    //     if(err){
-    //         throw err;
-    //     }
-    //     await fs.writeFile('./public/csv/questions.csv', questions, (err)=>{
+    //     });
+        
+    //     //delete and replace answers.csv with input from new.html
+    //     await fs.unlink('./public/csv/answers.csv', (err)=>{
     //         if(err){
     //             throw err;
     //         }
-    //         console.log('questions.csv updated!')
-    //     });
-    // });
-    // }catch{
-    //     res.json({status: 'error', error: 'Could not update questions/answers!'});
+    //     }).then(()=>{
+    //         fs.writeFile('./public/csv/answers.csv', ansCSV, (err)=>{
+    //             if(err){
+    //                 throw err;
+    //             }
+    //             // return console.log('answers.csv updated!');
+    //         });
+    //     }).then(()=>res.json({status: 'ok'}));
+    // }
+    // catch(err){
+    //     return res.json({status: 'error', error: 'Could not update questions/answers!'});
     // }
 
-    // try{
-    //     await fs.writeFile('./public/csv/questions1.csv', questions, (err)=>{
-    //         if(err){
-    //             throw err;
-    //         }
-    //         console.log('questions1.csv created!')
-    //     });
-    // }catch(e){
-
-    // }
-    
-
-    res.json({status: 'ok'});
 });
+
 
 
 
