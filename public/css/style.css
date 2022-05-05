@@ -58,15 +58,25 @@ td:hover{
 #popup{
   position: relative;
   top: 200px;
-  width: 35%;
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
   padding: 25px;
   border: 0px solid transparent;
   border-radius: 15px;
-  background-color: darkgray;
+  /* background-color: darkgray; */
+  background-color: #760355;
   cursor: pointer;
+  height: 50%;
+}
+
+#popup-text, #popupA-text{
+  font-size: larger;
+  margin-bottom: 5px;
 }
 
 #modalA{
@@ -81,15 +91,21 @@ td:hover{
 #popupA{
   position: relative;
   top: 200px;
-  width: 35%;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
   padding: 25px;
   border: 0px solid transparent;
   border-radius: 15px;
-  background-color: darkgray;
+  /* background-color: darkgray; */
+  background-color: #760355;
   /* cursor: pointer; */
+  height: 50%;
 }
 
 

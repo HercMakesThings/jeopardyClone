@@ -14,6 +14,7 @@ let popup = document.getElementById('popup');
 let modalA = document.getElementById('modalA');
 let popupA = document.getElementById('popupA');
 let popupAnswer = document.getElementById('popupA-text');
+let popupQuestion = document.getElementById('popup-text');
 let correctA = document.getElementById('a-correct');
 let incorrectA = document.getElementById('a-incorrect');
 
@@ -140,7 +141,7 @@ for(let i=0; i<tableCells.length; i++){
     //makes modal window visible and fills text content
     // with the right question and answer
     modal.style.display = 'block';
-    popup.textContent = questionArr[currentRow-1][i%5];
+    popupQuestion.textContent = questionArr[currentRow-1][i%5];
     popupAnswer.textContent = answerArr[currentRow-1][i%5];
 
   });//end eventListener
@@ -153,11 +154,7 @@ modal.addEventListener('click', ()=>{
   modalA.style.display = 'block';
 });
 
-//makes answer view go back to hidden
-// modalA.addEventListener('click', ()=>{
-//   modalA.style.display = 'none';
-// });
-
+//handle scores depending on which team got it and if the answer was right or not
 correctA.addEventListener('click', ()=>{
 
   //updates scoreboard depending on which team is currently active

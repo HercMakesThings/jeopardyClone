@@ -509,12 +509,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-left: 0.125rem;
 }
 
-.mr-0\.5 {
-  margin-right: 0.125rem;
-}
-
 .ml-0 {
   margin-left: 0px;
+}
+
+.mr-0\.5 {
+  margin-right: 0.125rem;
 }
 
 .mr-0 {
@@ -566,6 +566,16 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-firstBlue {
   --tw-bg-opacity: 1;
   background-color: rgb(73 170 208 / var(--tw-bg-opacity));
+}
+
+.bg-green-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(34 197 94 / var(--tw-bg-opacity));
+}
+
+.bg-red-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(239 68 68 / var(--tw-bg-opacity));
 }
 
 .p-2 {
@@ -624,11 +634,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(34 197 94 / var(--tw-text-opacity));
 }
 
-.text-red-500 {
-  --tw-text-opacity: 1;
-  color: rgb(239 68 68 / var(--tw-text-opacity));
-}
-
 /***************************************/
 
 /************CUSTOM STYLES**************/
@@ -644,7 +649,22 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(73 170 208 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-white:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
 .hover\:bg-firstOrchid:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(252 156 225 / var(--tw-bg-opacity));
+}
+
+.hover\:text-green-500:hover {
+  --tw-text-opacity: 1;
+  color: rgb(34 197 94 / var(--tw-text-opacity));
+}
+
+.hover\:text-red-500:hover {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
